@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A43FE531-947A-4C91-9DFF-31B38F430DA5</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BF08FED5ABD37F19F1A6F2683E1047F0203D7486</key>
+		<string>https://github.com/brockovercash/cs2340.git</string>
+	</dict>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BF08FED5ABD37F19F1A6F2683E1047F0203D7486</key>
+		<string>cs2340/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/brockovercash/cs2340.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BF08FED5ABD37F19F1A6F2683E1047F0203D7486</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BF08FED5ABD37F19F1A6F2683E1047F0203D7486</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cs2340</string>
+		</dict>
+	</array>
+</dict>
+</plist>
