@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
-
+@interface LoginViewController : UIViewController <NSURLConnectionDataDelegate>
+@property (nonatomic, retain) NSMutableData *responseData;
 @end

@@ -6,22 +6,30 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>A43FE531-947A-4C91-9DFF-31B38F430DA5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Shopping With Friends</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>BF08FED5ABD37F19F1A6F2683E1047F0203D7486</key>
 		<string>https://github.com/brockovercash/cs2340.git</string>
+		<key>F17D81CFE9A892461B98AD64752228B929AA8BED</key>
+		<string>https://github.com/PeterJLyons/Shopping-With-Friends.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Shopping With Friends.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>BF08FED5ABD37F19F1A6F2683E1047F0203D7486</key>
-		<string>cs2340/</string>
+		<string>../../../cs2340</string>
+		<key>F17D81CFE9A892461B98AD64752228B929AA8BED</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/brockovercash/cs2340.git</string>
+	<string>https://github.com/PeterJLyons/Shopping-With-Friends.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>BF08FED5ABD37F19F1A6F2683E1047F0203D7486</string>
+	<string>F17D81CFE9A892461B98AD64752228B929AA8BED</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -31,6 +39,14 @@
 			<string>BF08FED5ABD37F19F1A6F2683E1047F0203D7486</string>
 			<key>IDESourceControlWCCName</key>
 			<string>cs2340</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F17D81CFE9A892461B98AD64752228B929AA8BED</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Shopping%20With%20Friends</string>
 		</dict>
 	</array>
 </dict>

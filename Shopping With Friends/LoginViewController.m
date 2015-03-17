@@ -7,9 +7,10 @@
 //
 
 #import "LoginViewController.h"
-#import <Parse/Parse.h>
+@import Foundation;
 
-@interface LoginViewController ()
+
+@interface LoginViewController () <NSURLConnectionDataDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *attemptLogin;
@@ -20,6 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [_userField setReturnKeyType:UIReturnKeyDone];
+    [_passwordField setReturnKeyType:UIReturnKeyDone];
+    _userField.delegate = self;
+    _passwordField.delegate = self;
     // Do any additional setup after loading the view.
 }
 
@@ -27,13 +32,47 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+}
+
+
 - (IBAction)tryLogin:(id)sender {
-    if ([_userField.text  isEqualToString: @"user"] && [_passwordField.text isEqualToString:@"pass"])
+    
+    NSLog(@"Begin login POST...\n");
+    NSMutableDictionary *pairs = [[NSMutableDictionary alloc] init];
+    NSString *email = _userField.text;
+    NSString *password = _passwordField.text;
+    [pairs setValue:email forKey:@"email"];
+    [pairs setValue:password forKey:@"password"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://cs2340.cdbattaglia.com/api/login"]];
+    
+    [request setHTTPMethod:@"POST"];
+    NSString * parameters = [NSString stringWithFormat:@"email=%@&password=%@",pairs[@"email"],pairs[@"password"]];
+    NSData *requestData = [NSData dataWithBytes:[parameters UTF8String] length:[parameters length]];
+    [request setHTTPBody:requestData];
+    [request setTimeoutInterval:15.0];
+    NSURLConnection * connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];
+    NSLog(@"Connection started.");
+    NSURLResponse *response;
+    NSError *error = nil;
+    
+    NSData *result = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    NSDictionary *jsonparse = [NSJSONSerialization JSONObjectWithData:result options: NSJSONReadingMutableContainers error:&error];
+    NSString *auth = [[NSString alloc] initWithData:result encoding:NSASCIIStringEncoding];
+    if (![auth isEqualToString:@"Unauthorized"])
     {
-        
-        [self performSegueWithIdentifier:@"login_success" sender:nil];
-        
+        if ([jsonparse[@"status"] isEqualToString:@"success"]) {
+            NSLog(@"Login successful.");
+            [self performSegueWithIdentifier:@"login_success" sender:nil];
+        }
     }
+    
+
 }
 
 /*
