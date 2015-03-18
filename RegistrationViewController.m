@@ -61,34 +61,44 @@
     NSString *password = _PasswordField.text;
     NSString *fullName = _FullName.text;
     NSString *userName = _UsernameField.text;
-    [pairs setValue:email forKey:@"email"];
-    [pairs setValue:password forKey:@"password"];
     [pairs setValue:fullName forKey:@"full_name"];
+    [pairs setValue:email forKey:@"email"];
     [pairs setValue:userName forKey:@"username"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://cs2340.cdbattaglia.com/api/register"]];
+    [pairs setValue:password forKey:@"password"];
+   
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/register"]];
     
     [request setHTTPMethod:@"POST"];
-    NSString * parameters = [NSString stringWithFormat:@"full_name=%@&email=%@&username=%@password=%@",pairs[@"full_name"],pairs[@"email"],pairs[@"username"],pairs[@"password"]];
+    NSString * parameters = [NSString stringWithFormat:@"full_name=%@&email=%@&username=%@&password=%@",pairs[@"full_name"],pairs[@"email"],pairs[@"username"],pairs[@"password"]];
     NSData *requestData = [NSData dataWithBytes:[parameters UTF8String] length:[parameters length]];
     [request setHTTPBody:requestData];
     [request setTimeoutInterval:15.0];
     NSURLConnection * connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [connection start];
     NSLog(@"Connection started.");
-    NSURLResponse *response;
+    NSHTTPURLResponse *response;
     NSError *error = nil;
     
     NSData *result = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
+    NSDictionary *dict = [response allHeaderFields];
+    NSLog(@"Status code: %ld",(long)[response statusCode]);
+    NSLog(@"Headers:\n %@",dict.description);
+    NSLog(@"Error: %@",error.description);
+    
     NSDictionary *jsonparse = [NSJSONSerialization JSONObjectWithData:result options: NSJSONReadingMutableContainers error:&error];
+   
+    //NSLog(@"Response data: %@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
     NSString *auth = [[NSString alloc] initWithData:result encoding:NSASCIIStringEncoding];
+    NSLog(@"Data result:");
     NSLog(auth);
     
     if ([jsonparse[@"status"] isEqualToString:@"success"])
     {
         NSLog(@"Registration successful.");
-        [self performSegueWithIdentifier:@"login_success" sender:nil];
+        [self performSegueWithIdentifier:@"register_success" sender:nil];
     }
+    
 }
 
 

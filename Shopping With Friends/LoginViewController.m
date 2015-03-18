@@ -47,7 +47,7 @@
     NSString *password = _passwordField.text;
     [pairs setValue:email forKey:@"email"];
     [pairs setValue:password forKey:@"password"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://cs2340.cdbattaglia.com/api/login"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/login"]];
     
     [request setHTTPMethod:@"POST"];
     NSString * parameters = [NSString stringWithFormat:@"email=%@&password=%@",pairs[@"email"],pairs[@"password"]];
@@ -64,6 +64,7 @@
     
     NSDictionary *jsonparse = [NSJSONSerialization JSONObjectWithData:result options: NSJSONReadingMutableContainers error:&error];
     NSString *auth = [[NSString alloc] initWithData:result encoding:NSASCIIStringEncoding];
+    NSLog(auth);
     if (![auth isEqualToString:@"Unauthorized"])
     {
         if ([jsonparse[@"status"] isEqualToString:@"success"]) {

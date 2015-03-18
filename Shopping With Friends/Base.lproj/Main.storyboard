@@ -124,11 +124,12 @@
                         <outlet property="PasswordField" destination="9tR-rh-7eh" id="gh4-FK-M6p"/>
                         <outlet property="RegisterButton" destination="Dj4-hp-B4X" id="x9Q-Z7-SVJ"/>
                         <outlet property="UsernameField" destination="2xS-0t-S1d" id="8QW-WN-xab"/>
+                        <segue destination="7Xx-0a-46e" kind="presentation" identifier="register_success" modalTransitionStyle="flipHorizontal" id="zcm-NC-ziX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vjn-lP-2Ai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-588.5" y="336.5"/>
+            <point key="canvasLocation" x="-574.5" y="364.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XAF-wf-EQf">
@@ -285,4 +286,7 @@
     <resources>
         <image name="my_logo.jpeg" width="384" height="384"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="zcm-NC-ziX"/>
+    </inferredMetricsTieBreakers>
 </document>
