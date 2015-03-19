@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 @import Foundation;
 
 
@@ -19,12 +20,17 @@
 
 @implementation LoginViewController
 
+AppDelegate *appDelegate;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_userField setReturnKeyType:UIReturnKeyDone];
     [_passwordField setReturnKeyType:UIReturnKeyDone];
     _userField.delegate = self;
     _passwordField.delegate = self;
+    
+    
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];//in didLoad method
     // Do any additional setup after loading the view.
 }
 
@@ -69,6 +75,7 @@
     {
         if ([jsonparse[@"status"] isEqualToString:@"success"]) {
             NSLog(@"Login successful.");
+            appDelegate.userToken = jsonparse[@"token"];
             [self performSegueWithIdentifier:@"login_success" sender:nil];
         }
     }

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+@property (strong, nonatomic) NSString *userToken;
 @property (strong, nonatomic) UIWindow *window;
 
 
