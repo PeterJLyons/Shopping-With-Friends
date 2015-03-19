@@ -15,6 +15,7 @@
 @implementation AppDelegate
 
 @synthesize userToken;
+@synthesize tappedUser;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

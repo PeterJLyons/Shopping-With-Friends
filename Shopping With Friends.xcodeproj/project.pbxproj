@@ -19,6 +19,8 @@
 		FFB36F641A927DFC00FDD47D /* Shopping_With_FriendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB36F631A927DFC00FDD47D /* Shopping_With_FriendsTests.m */; };
 		FFBB71EA1ABA6A59005BE593 /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBB71E91ABA6A59005BE593 /* MainFeedViewController.m */; };
 		FFBB71F01ABA6AC4005BE593 /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBB71EF1ABA6AC4005BE593 /* FriendsListViewController.m */; };
+		FFD309BA1ABA93080010BEEC /* FriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD309B91ABA93080010BEEC /* FriendDetailViewController.m */; };
+		FFD309BC1ABAA2F60010BEEC /* user.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFD309BB1ABAA2F60010BEEC /* user.plist */; };
 		FFD3F84F1AB8E04600BE12F4 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD3F84E1AB8E04600BE12F4 /* RegistrationViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,9 @@
 		FFBB71E91ABA6A59005BE593 /* MainFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		FFBB71EE1ABA6AC4005BE593 /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
 		FFBB71EF1ABA6AC4005BE593 /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
+		FFD309B81ABA93080010BEEC /* FriendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetailViewController.h; sourceTree = "<group>"; };
+		FFD309B91ABA93080010BEEC /* FriendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailViewController.m; sourceTree = "<group>"; };
+		FFD309BB1ABAA2F60010BEEC /* user.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = user.plist; sourceTree = "<group>"; };
 		FFD3F84D1AB8E04600BE12F4 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationViewController.h; path = ../RegistrationViewController.h; sourceTree = "<group>"; };
 		FFD3F84E1AB8E04600BE12F4 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationViewController.m; path = ../RegistrationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,8 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				FFB36F511A927DFC00FDD47D /* Main.storyboard */,
+				FFD309B81ABA93080010BEEC /* FriendDetailViewController.h */,
+				FFD309B91ABA93080010BEEC /* FriendDetailViewController.m */,
 				FFBB71EE1ABA6AC4005BE593 /* FriendsListViewController.h */,
 				FFBB71EF1ABA6AC4005BE593 /* FriendsListViewController.m */,
+				FFD309BB1ABAA2F60010BEEC /* user.plist */,
 				FFBB71E81ABA6A59005BE593 /* MainFeedViewController.h */,
 				FFBB71E91ABA6A59005BE593 /* MainFeedViewController.m */,
 				FFD3F84D1AB8E04600BE12F4 /* RegistrationViewController.h */,
@@ -226,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFD309BC1ABAA2F60010BEEC /* user.plist in Resources */,
 				FF3F04551A93F3390087E6BE /* my_logo.jpeg in Resources */,
 				FFB36F531A927DFC00FDD47D /* Main.storyboard in Resources */,
 				FFB36F581A927DFC00FDD47D /* LaunchScreen.xib in Resources */,
@@ -247,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFD309BA1ABA93080010BEEC /* FriendDetailViewController.m in Sources */,
 				FFBB71F01ABA6AC4005BE593 /* FriendsListViewController.m in Sources */,
 				FFB36F4A1A927DFC00FDD47D /* AppDelegate.m in Sources */,
 				FFD3F84F1AB8E04600BE12F4 /* RegistrationViewController.m in Sources */,

@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "AppDelegate.h"
 @import Foundation;
 
 
@@ -20,7 +19,6 @@
 
 @implementation LoginViewController
 
-AppDelegate *appDelegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +28,7 @@ AppDelegate *appDelegate;
     _passwordField.delegate = self;
     
     
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];//in didLoad method
+    //in didLoad method
     // Do any additional setup after loading the view.
 }
 
@@ -71,11 +69,14 @@ AppDelegate *appDelegate;
     NSDictionary *jsonparse = [NSJSONSerialization JSONObjectWithData:result options: NSJSONReadingMutableContainers error:&error];
     NSString *auth = [[NSString alloc] initWithData:result encoding:NSASCIIStringEncoding];
     NSLog(auth);
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    [tokenizer setValue:jsonparse[@"token"] forKey:@"token"];
+    [tokenizer writeToFile:plistPath atomically:YES];
     if (![auth isEqualToString:@"Unauthorized"])
     {
         if ([jsonparse[@"status"] isEqualToString:@"success"]) {
             NSLog(@"Login successful.");
-            appDelegate.userToken = jsonparse[@"token"];
             [self performSegueWithIdentifier:@"login_success" sender:nil];
         }
     }
