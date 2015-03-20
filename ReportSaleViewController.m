@@ -1,34 +1,25 @@
 //
-//  LoginViewController.m
+//  ReportSaleViewController.m
 //  Shopping With Friends
 //
-//  Created by Peter Lyons on 2/24/15.
+//  Created by Peter Lyons on 3/19/15.
 //  Copyright (c) 2015 CS2340. All rights reserved.
 //
 
-#import "LoginViewController.h"
-@import Foundation;
+#import "ReportSaleViewController.h"
 
-
-@interface LoginViewController () <NSURLConnectionDataDelegate, UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *userField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet UIButton *attemptLogin;
+@interface ReportSaleViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *priceField;
+@property (weak, nonatomic) IBOutlet UITextField *latField;
+@property (weak, nonatomic) IBOutlet UITextField *longField;
 
 @end
 
-@implementation LoginViewController
-
+@implementation ReportSaleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_userField setReturnKeyType:UIReturnKeyDone];
-    [_passwordField setReturnKeyType:UIReturnKeyDone];
-    _userField.delegate = self;
-    _passwordField.delegate = self;
-    
-    
-    //in didLoad method
     // Do any additional setup after loading the view.
 }
 
@@ -36,25 +27,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [textField resignFirstResponder];
-}
-
-
-- (IBAction)tryLogin:(id)sender {
-    
-    NSLog(@"Begin login POST...\n");
+- (IBAction)reportSale:(id)sender {
+    NSString *name = _nameField.text;
+    NSString *price = _priceField.text;
+    NSString *lat = _latField.text;
+    NSString *longit = _longField.text;
+    NSLog(@"Begin report sale POST...\n");
     NSMutableDictionary *pairs = [[NSMutableDictionary alloc] init];
-    NSString *email = _userField.text;
-    NSString *password = _passwordField.text;
-    [pairs setValue:email forKey:@"email"];
-    [pairs setValue:password forKey:@"password"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/login"]];
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    [pairs setValue:tokenizer[@"token"] forKey:@"token"];
+    [pairs setValue:name forKey:@"name"];
+    [pairs setValue:price forKey:@"price"];
+    [pairs setValue:lat forKey:@"lat"];
+    [pairs setValue:longit forKey:@"long"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/report/new"]];
     
     [request setHTTPMethod:@"POST"];
-    NSString * parameters = [NSString stringWithFormat:@"email=%@&password=%@",pairs[@"email"],pairs[@"password"]];
+    NSString * parameters = [NSString stringWithFormat:@"token=%@&name=%@&price=%@&long=%@&lat=%@",pairs[@"token"],pairs[@"name"],pairs[@"price"],pairs[@"lat"],pairs[@"long"]];
     NSData *requestData = [NSData dataWithBytes:[parameters UTF8String] length:[parameters length]];
     [request setHTTPBody:requestData];
     [request setTimeoutInterval:15.0];
@@ -68,20 +58,19 @@
     
     NSDictionary *jsonparse = [NSJSONSerialization JSONObjectWithData:result options: NSJSONReadingMutableContainers error:&error];
     NSString *auth = [[NSString alloc] initWithData:result encoding:NSASCIIStringEncoding];
-    NSLog(auth);
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
-    NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-    [tokenizer setValue:jsonparse[@"token"] forKey:@"token"];
-    [tokenizer writeToFile:plistPath atomically:YES];
+    //NSLog(auth);
     if (![auth isEqualToString:@"Unauthorized"])
     {
         if ([jsonparse[@"status"] isEqualToString:@"success"]) {
-            NSLog(@"Login successful.");
-            [self performSegueWithIdentifier:@"login_success" sender:nil];
+            NSLog(@"report sale successful.");
         }
     }
     
+    [self performSegueWithIdentifier:@"report_success" sender:nil];
 
+    
+    
+    
 }
 
 /*

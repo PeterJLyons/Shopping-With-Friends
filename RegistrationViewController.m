@@ -73,9 +73,9 @@
     NSData *requestData = [NSData dataWithBytes:[parameters UTF8String] length:[parameters length]];
     [request setHTTPBody:requestData];
     [request setTimeoutInterval:15.0];
-    NSURLConnection * connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [connection start];
-    NSLog(@"Connection started.");
+    //NSURLConnection * connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    //[connection start];
+    //NSLog(@"Connection started.");
     NSHTTPURLResponse *response;
     NSError *error = nil;
     

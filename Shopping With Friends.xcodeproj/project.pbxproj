@@ -10,6 +10,7 @@
 		FF2533911AA4FFB400DD79E0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2533901AA4FFB400DD79E0 /* libz.dylib */; };
 		FF2533931AA4FFBE00DD79E0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2533921AA4FFBE00DD79E0 /* libsqlite3.dylib */; };
 		FF3F04551A93F3390087E6BE /* my_logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FF3FFFD11A93F3380087E6BE /* my_logo.jpeg */; };
+		FF449BF41ABBD0DB0082DCA9 /* ReportSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF449BF31ABBD0DB0082DCA9 /* ReportSaleViewController.m */; };
 		FF7BA75B1A9D281800BCBC9C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7BA75A1A9D281800BCBC9C /* LoginViewController.m */; };
 		FFB36F471A927DFC00FDD47D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB36F461A927DFC00FDD47D /* main.m */; };
 		FFB36F4A1A927DFC00FDD47D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB36F491A927DFC00FDD47D /* AppDelegate.m */; };
@@ -38,6 +39,8 @@
 		FF2533901AA4FFB400DD79E0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		FF2533921AA4FFBE00DD79E0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FF3FFFD11A93F3380087E6BE /* my_logo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = my_logo.jpeg; path = "../../../../cs2340/app/src/main/res/drawable-xhdpi/my_logo.jpeg"; sourceTree = "<group>"; };
+		FF449BF21ABBD0DB0082DCA9 /* ReportSaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReportSaleViewController.h; path = ../ReportSaleViewController.h; sourceTree = "<group>"; };
+		FF449BF31ABBD0DB0082DCA9 /* ReportSaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReportSaleViewController.m; path = ../ReportSaleViewController.m; sourceTree = "<group>"; };
 		FF7BA7591A9D281800BCBC9C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FF7BA75A1A9D281800BCBC9C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FFB36F411A927DFC00FDD47D /* Shopping With Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopping With Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				FFB36F511A927DFC00FDD47D /* Main.storyboard */,
+				FF449BF21ABBD0DB0082DCA9 /* ReportSaleViewController.h */,
+				FF449BF31ABBD0DB0082DCA9 /* ReportSaleViewController.m */,
 				FFD309B81ABA93080010BEEC /* FriendDetailViewController.h */,
 				FFD309B91ABA93080010BEEC /* FriendDetailViewController.m */,
 				FFBB71EE1ABA6AC4005BE593 /* FriendsListViewController.h */,
@@ -261,6 +266,7 @@
 				FFB36F4A1A927DFC00FDD47D /* AppDelegate.m in Sources */,
 				FFD3F84F1AB8E04600BE12F4 /* RegistrationViewController.m in Sources */,
 				FFB36F471A927DFC00FDD47D /* main.m in Sources */,
+				FF449BF41ABBD0DB0082DCA9 /* ReportSaleViewController.m in Sources */,
 				FF7BA75B1A9D281800BCBC9C /* LoginViewController.m in Sources */,
 				FFBB71EA1ABA6A59005BE593 /* MainFeedViewController.m in Sources */,
 			);
