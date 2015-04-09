@@ -12,6 +12,8 @@
 		FF3F04551A93F3390087E6BE /* my_logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FF3FFFD11A93F3380087E6BE /* my_logo.jpeg */; };
 		FF449BF41ABBD0DB0082DCA9 /* ReportSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF449BF31ABBD0DB0082DCA9 /* ReportSaleViewController.m */; };
 		FF7BA75B1A9D281800BCBC9C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7BA75A1A9D281800BCBC9C /* LoginViewController.m */; };
+		FF7C07951AD21548000524B3 /* ProductMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7C07941AD21548000524B3 /* ProductMapViewController.m */; };
+		FF7C07971AD21BFE000524B3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7C07961AD21BFE000524B3 /* MapKit.framework */; };
 		FFB36F471A927DFC00FDD47D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB36F461A927DFC00FDD47D /* main.m */; };
 		FFB36F4A1A927DFC00FDD47D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB36F491A927DFC00FDD47D /* AppDelegate.m */; };
 		FFB36F531A927DFC00FDD47D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFB36F511A927DFC00FDD47D /* Main.storyboard */; };
@@ -43,6 +45,9 @@
 		FF449BF31ABBD0DB0082DCA9 /* ReportSaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReportSaleViewController.m; path = ../ReportSaleViewController.m; sourceTree = "<group>"; };
 		FF7BA7591A9D281800BCBC9C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FF7BA75A1A9D281800BCBC9C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		FF7C07931AD21548000524B3 /* ProductMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductMapViewController.h; path = ../ProductMapViewController.h; sourceTree = "<group>"; };
+		FF7C07941AD21548000524B3 /* ProductMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductMapViewController.m; path = ../ProductMapViewController.m; sourceTree = "<group>"; };
+		FF7C07961AD21BFE000524B3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FFB36F411A927DFC00FDD47D /* Shopping With Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopping With Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB36F451A927DFC00FDD47D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFB36F461A927DFC00FDD47D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF7C07971AD21BFE000524B3 /* MapKit.framework in Frameworks */,
 				FF2533931AA4FFBE00DD79E0 /* libsqlite3.dylib in Frameworks */,
 				FF2533911AA4FFB400DD79E0 /* libz.dylib in Frameworks */,
 			);
@@ -88,6 +94,7 @@
 		FFB36F381A927DFC00FDD47D = {
 			isa = PBXGroup;
 			children = (
+				FF7C07961AD21BFE000524B3 /* MapKit.framework */,
 				FF2533921AA4FFBE00DD79E0 /* libsqlite3.dylib */,
 				FF2533901AA4FFB400DD79E0 /* libz.dylib */,
 				FFB36F431A927DFC00FDD47D /* Shopping With Friends */,
@@ -108,6 +115,8 @@
 		FFB36F431A927DFC00FDD47D /* Shopping With Friends */ = {
 			isa = PBXGroup;
 			children = (
+				FF7C07931AD21548000524B3 /* ProductMapViewController.h */,
+				FF7C07941AD21548000524B3 /* ProductMapViewController.m */,
 				FFB36F511A927DFC00FDD47D /* Main.storyboard */,
 				FF449BF21ABBD0DB0082DCA9 /* ReportSaleViewController.h */,
 				FF449BF31ABBD0DB0082DCA9 /* ReportSaleViewController.m */,
@@ -262,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD309BA1ABA93080010BEEC /* FriendDetailViewController.m in Sources */,
+				FF7C07951AD21548000524B3 /* ProductMapViewController.m in Sources */,
 				FFBB71F01ABA6AC4005BE593 /* FriendsListViewController.m in Sources */,
 				FFB36F4A1A927DFC00FDD47D /* AppDelegate.m in Sources */,
 				FFD3F84F1AB8E04600BE12F4 /* RegistrationViewController.m in Sources */,

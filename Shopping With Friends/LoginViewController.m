@@ -51,7 +51,11 @@
     NSString *password = _passwordField.text;
     [pairs setValue:email forKey:@"email"];
     [pairs setValue:password forKey:@"password"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/login"]];
+    
+    //Uncomment for local node server
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/login"]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://cs2340.cdbattaglia.com/api/login"]];
     
     [request setHTTPMethod:@"POST"];
     NSString * parameters = [NSString stringWithFormat:@"email=%@&password=%@",pairs[@"email"],pairs[@"password"]];
@@ -69,14 +73,26 @@
     NSDictionary *jsonparse = [NSJSONSerialization JSONObjectWithData:result options: NSJSONReadingMutableContainers error:&error];
     NSString *auth = [[NSString alloc] initWithData:result encoding:NSASCIIStringEncoding];
     NSLog(auth);
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"]; // Correct path to Documents Dir in the App Sand box
+   /* NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];*/
+   
     NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-    [tokenizer setValue:jsonparse[@"token"] forKey:@"token"];
+    if (tokenizer == nil)
+    {
+         tokenizer = [[NSMutableDictionary alloc] init];
+    }
+    NSString *tok = jsonparse[@"token"];
+    [tokenizer setObject:tok forKey:@"token"];
     [tokenizer writeToFile:plistPath atomically:YES];
     if (![auth isEqualToString:@"Unauthorized"])
     {
         if ([jsonparse[@"status"] isEqualToString:@"success"]) {
             NSLog(@"Login successful.");
+            
             [self performSegueWithIdentifier:@"login_success" sender:nil];
         }
     }

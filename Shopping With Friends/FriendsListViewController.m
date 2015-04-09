@@ -45,12 +45,17 @@ AppDelegate *appDelegate;
     NSMutableDictionary *pairs = [[NSMutableDictionary alloc] init];
     //NSString *email = _userField.text;
     //NSString *password = _passwordField.text;
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
     NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     [pairs setValue:tokenizer[@"token"] forKey:@"token"];
     //[pairs setValue:password forKey:@"password"];
     [pairs setValue:friendEmail forKey:@"friendemail"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/user/add_friend"]];
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/user/add_friend"]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://cs2340.cdbattaglia.com/api/user/add_friend"]];
     
     [request setHTTPMethod:@"POST"];
     NSString * parameters = [NSString stringWithFormat:@"token=%@&friend_email=%@",pairs[@"token"],pairs[@"friendemail"]];
@@ -110,11 +115,16 @@ AppDelegate *appDelegate;
     NSMutableDictionary *pairs = [[NSMutableDictionary alloc] init];
     //NSString *email = _userField.text;
     //NSString *password = _passwordField.text;
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
     NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     [pairs setValue:tokenizer[@"token"] forKey:@"token"];
     //[pairs setValue:password forKey:@"password"];
-    NSString *friendsURL = @"http://localhost:1337/api/user/friends?token=";
+    //NSString *friendsURL = @"http://localhost:1337/api/user/friends?token=";
+    
+    NSString *friendsURL = @"http://cs2340.cdbattaglia.com/api/user/friends?token=";
     parameters = [NSString stringWithFormat:@"%@", pairs[@"token"]];
     friendsURL = [friendsURL stringByAppendingString:parameters];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:friendsURL]];

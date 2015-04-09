@@ -37,11 +37,16 @@ AppDelegate *appDelegate;
 - (IBAction)deleteFriend:(id)sender {
     NSLog(@"Begin remove friend POST...\n");
     NSMutableDictionary *pairs = [[NSMutableDictionary alloc] init];
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
     NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     [pairs setValue:tokenizer[@"token"] forKey:@"token"];
     [pairs setValue:appDelegate.tappedUser[@"email"] forKey:@"friend_email"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/user/remove_friend"]];
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/user/remove_friend"]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://cs2340.cdbattaglia.com/api/user/remove_friend"]];
     
     [request setHTTPMethod:@"POST"];
     NSString * parameters = [NSString stringWithFormat:@"token=%@&friend_email=%@",pairs[@"token"],pairs[@"friend_email"]];

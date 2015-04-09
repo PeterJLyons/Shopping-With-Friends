@@ -12,7 +12,7 @@
 @property (strong, nonatomic) NSString *userToken;
 @property (strong, nonatomic) NSDictionary *tappedUser;
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) NSDictionary *tappedProduct;
 
 @end
 

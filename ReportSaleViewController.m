@@ -34,14 +34,19 @@
     NSString *longit = _longField.text;
     NSLog(@"Begin report sale POST...\n");
     NSMutableDictionary *pairs = [[NSMutableDictionary alloc] init];
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
     NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     [pairs setValue:tokenizer[@"token"] forKey:@"token"];
     [pairs setValue:name forKey:@"name"];
     [pairs setValue:price forKey:@"price"];
     [pairs setValue:lat forKey:@"lat"];
     [pairs setValue:longit forKey:@"long"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/report/new"]];
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/report/new"]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://cs2340.cdbattaglia.com/api/report/new"]];
     
     [request setHTTPMethod:@"POST"];
     NSString * parameters = [NSString stringWithFormat:@"token=%@&name=%@&price=%@&long=%@&lat=%@",pairs[@"token"],pairs[@"name"],pairs[@"price"],pairs[@"lat"],pairs[@"long"]];

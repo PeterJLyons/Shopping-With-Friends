@@ -7,6 +7,7 @@
 //
 
 #import "MainFeedViewController.h"
+#import "AppDelegate.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *logout;
@@ -16,10 +17,13 @@
 
 @implementation MainFeedViewController
 NSMutableArray *products;
+AppDelegate *appDelegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refreshFeed];
+    
+    appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];//in didLoad method
     // Do any additional setup after loading the view.
     //TODO: add code for loading the feed.
 }
@@ -31,10 +35,15 @@ NSMutableArray *products;
 - (IBAction)logoutUser:(id)sender {
     NSLog(@"Begin logout POST...\n");
     NSMutableDictionary *pairs = [[NSMutableDictionary alloc] init];
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
     NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     [pairs setValue:tokenizer[@"token"] forKey:@"token"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/logout"]];
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/logout"]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://cs2340.cdbattaglia.com/api/logout"]];
     
     [request setHTTPMethod:@"POST"];
     NSString * parameters = [NSString stringWithFormat:@"token=%@",pairs[@"token"]];
@@ -70,11 +79,16 @@ NSMutableArray *products;
     NSMutableDictionary *pairs = [[NSMutableDictionary alloc] init];
     //NSString *email = _userField.text;
     //NSString *password = _passwordField.text;
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
     NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     [pairs setValue:tokenizer[@"token"] forKey:@"token"];
     //[pairs setValue:password forKey:@"password"];
-    NSString *friendsURL = @"http://localhost:1337/api/report/all?token=";
+   // NSString *friendsURL = @"http://localhost:1337/api/report/all?token=";
+    
+     NSString *friendsURL = @"http://cs2340.cdbattaglia.com/api/report/all?token=";
     NSString *parameters = [NSString stringWithFormat:@"%@", pairs[@"token"]];
     friendsURL = [friendsURL stringByAppendingString:parameters];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:friendsURL]];
@@ -127,6 +141,14 @@ NSMutableArray *products;
 {
     return 1;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    appDelegate.tappedProduct = [products objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"mapView" sender:nil];
+    
+}
+
 
 /*
 #pragma mark - Navigation

@@ -61,15 +61,17 @@
     NSString *password = _PasswordField.text;
     NSString *fullName = _FullName.text;
     NSString *userName = _UsernameField.text;
-    [pairs setValue:fullName forKey:@"full_name"];
+    [pairs setValue:fullName forKey:@"fullname"];
     [pairs setValue:email forKey:@"email"];
     [pairs setValue:userName forKey:@"username"];
     [pairs setValue:password forKey:@"password"];
    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/register"]];
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:1337/api/register"]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://cs2340.cdbattaglia.com/api/register"]];
     
     [request setHTTPMethod:@"POST"];
-    NSString * parameters = [NSString stringWithFormat:@"full_name=%@&email=%@&username=%@&password=%@",pairs[@"full_name"],pairs[@"email"],pairs[@"username"],pairs[@"password"]];
+    NSString * parameters = [NSString stringWithFormat:@"full_name=%@&email=%@&username=%@&password=%@",pairs[@"fullname"],pairs[@"email"],pairs[@"username"],pairs[@"password"]];
     NSData *requestData = [NSData dataWithBytes:[parameters UTF8String] length:[parameters length]];
     [request setHTTPBody:requestData];
     [request setTimeoutInterval:15.0];
@@ -81,11 +83,6 @@
     
     NSData *result = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    NSDictionary *dict = [response allHeaderFields];
-    NSLog(@"Status code: %ld",(long)[response statusCode]);
-    NSLog(@"Headers:\n %@",dict.description);
-    NSLog(@"Error: %@",error.description);
-    
     NSDictionary *jsonparse = [NSJSONSerialization JSONObjectWithData:result options: NSJSONReadingMutableContainers error:&error];
    
     //NSLog(@"Response data: %@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
@@ -96,6 +93,17 @@
     if ([jsonparse[@"status"] isEqualToString:@"success"])
     {
         NSLog(@"Registration successful.");
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsPath = [paths objectAtIndex:0];
+        
+        NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
+        NSMutableDictionary *tokenizer = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+        if (tokenizer == nil)
+        {
+            tokenizer = [[NSMutableDictionary alloc] init];
+        }
+        [tokenizer setValue:jsonparse[@"token"] forKey:@"token"];
+        [tokenizer writeToFile:plistPath atomically:YES];
         [self performSegueWithIdentifier:@"register_success" sender:nil];
     }
     
